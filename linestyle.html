@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    body {
+      width: 100%;
+      margin: 0;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    ul {
+
+      width: 100%;
+      height: 100%;
+      padding-inline-start: 0;
+      margin: 0;
+      transition: all .5s;
+    }
+
+    ul li {
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      list-style: none;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation-name: LineAnimate;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      background-size: 150% auto;
+    }
+
+    @keyframes LineAnimate {
+      0% {
+        opacity: 0;
+        background-size: 150% auto;
+      }
+
+      25% {
+        opacity: 1;
+
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      75% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+        background-size: 120% auto;
+      }
+    }
+  </style>
+
+  <div class="container" id="app">
+    <ul>
+      <li v-for="(n,idx) in count" :key="idx" :style="Img(n)"></li>
+    </ul>
+  </div>
+  <div>
+    <h2>test</h2>
+    <h2>test</h2>
+    <h2>test</h2>
+    <h2>test</h2>
+    <h2>test</h2>
+    <h2>test</h2>
+    <h2>test</h2>
+    <h2>test</h2>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        count: 5,
+      },
+      created() {
+
+      },
+      methods: {
+        Img(n) {
+          return {
+            backgroundImage: `url(https://picsum.photos/2500/1800?random=${n})`,
+            animationDuration: '10s',
+            animationDelay: `${(n - 1) * 10 / 2}s`
+          }
+        }
+      }
+
+    })
+  </script>
+
+</body>
+
+</html>
